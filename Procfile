@@ -1,0 +1,1 @@
+web: npx tsc --project tsconfig.json && node out/index.js
