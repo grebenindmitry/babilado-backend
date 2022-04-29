@@ -37,7 +37,7 @@ export async function sendMessage(
   recipient: string,
   data: string,
   time_sent: number = Date.now(),
-  type: number = 0
+  type: number
 ): Promise<Message> {
   const tag: string = "sendMessage";
 
@@ -57,7 +57,6 @@ export async function sendMessage(
     );
 
     if (wsUsers[message.recipient] != undefined) {
-      logger.info("sent to r")
       wsUsers[message.recipient]!.send(
         JSON.stringify({
           type: "newMessage",
@@ -67,7 +66,6 @@ export async function sendMessage(
     }
 
     if (wsUsers[message.sender] != undefined) {
-      logger.info("sent to s")
       wsUsers[message.sender]!.send(
         JSON.stringify({
           type: "newMessage",
