@@ -23,7 +23,7 @@ export function bindWStoServer(server: HTTPServer) {
 
             if (req.newMessage != null) {
               let newMessage: Message = req.newMessage;
-              sendMessage(userId, newMessage.recipient, newMessage.msg_data, newMessage.time_sent)
+              sendMessage(userId, newMessage.recipient, newMessage.msg_data, newMessage.time_sent, newMessage.msg_type)
                 .then(result => ws.send(JSON.stringify({ type: "newMessage", newMessage: result })))
                 .catch(err => {  });
             }
